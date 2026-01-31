@@ -1,32 +1,126 @@
-1. index.html
-Struktur Metadata & Dependensi: Menggunakan standar HTML5 dengan optimasi viewport untuk responsivitas. Proyek ini mengintegrasikan AOS.js melalui CDN untuk manajemen animasi berbasis scroll dan FontAwesome untuk penyediaan aset ikon vektor pada antarmuka.
+# Penjelasan Source Kode
+## index.html
+File ini merupakan struktur utama website portofolio yang berfungsi sebagai pusat navigasi dan interaksi pengguna.
 
-Sistem Navigasi: Implementasi Sticky Header dengan teknik position: fixed. Navigasi menggunakan anchor links (#) yang bekerja sama dengan properti CSS scroll-behavior: smooth untuk menciptakan pengalaman navigasi satu halaman (Single Page Application style).
+```HTML
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head 
+```
+Fungsi: Menggunakan standar HTML5 dan mengintegrasikan library eksternal untuk animasi serta ikon grafis yang mendukung antarmuka.
 
-Hero Section & Typewriter Logic: Menggunakan elemen kontainer untuk tata letak terpusat. Fitur utama di sini adalah manipulasi DOM pada elemen dengan ID typewriter. Logika JavaScript di akhir file mengatur siklus array string, durasi jeda, dan efek penghapusan karakter untuk mensimulasikan pengetikan manual.
+```HTML
+<nav>
+    <div class="logo">ereanoor<span>.dev</span></div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#hobbies">Hobi</a></li>
+        <li><a href="#contact">Kontak</a></li>
+    </ul>
+</nav>```
+```
+Fungsi: Implementasi navigasi menggunakan anchor links (#) yang memungkinkan perpindahan antar seksi halaman secara halus (SPA style).
 
-Layout Grid Hobi: Memanfaatkan sistem Grid yang dinamis. Setiap elemen kartu dibungkus dalam tag jangkar (<a>) yang mengarah ke file HTML internal. Atribut data-aos disematkan pada tiap kartu untuk mentrigger animasi masuk saat fungsi AOS.init() dijalankan.
+```JavaScript
+const phrases = ['IT Student', 'AI Enthusiast'];
+let phraseIndex = 0; let charIndex = 0; let isDeleting = false;
 
-Social Integration: Footer disusun menggunakan kontainer fleksibel yang memuat tautan absolut. Atribut target="_blank" digunakan secara konsisten pada semua tautan eksternal (LinkedIn, GitHub, dll.) untuk menjaga retensi pengguna pada halaman utama.
+function type() {
+    const currentPhrase = phrases[phraseIndex];
+    if (isDeleting) {
+        textElement.textContent = currentPhrase.substring(0, charIndex - 1); 
+        charIndex--;
+    } else {
+        textElement.textContent = currentPhrase.substring(0, charIndex + 1); 
+        charIndex++;
+    }
+}
+```
+Fungsi: Memanipulasi DOM pada elemen #typewriter untuk mensimulasikan efek pengetikan otomatis secara dinamis.
 
-2. membaca.html
-Arsitektur Sub-Halaman: Menggunakan kelas CSS sub-page untuk merubah skema tata letak dari full-height menjadi konten berbasis alur (flow-based).
+## Detail Pages (membaca.html, bermusik.html, ngoding.html, gaming.html)
+Halaman-halaman ini dirancang untuk memberikan informasi mendalam mengenai profil personal dengan struktur yang konsisten.
 
-Komponen Detail Box: Implementasi elemen .detail-box yang menggunakan border-left tebal untuk penekanan visual. Secara teknis, ini digunakan untuk mengelompokkan konten tematik terkait genre Kingdom Building.
+```HTML
+<body class="sub-page">
+    <div class="sub-hero">
+        <h1>The <span>Gamer</span> Soul</h1>
+        <p>Arena ketangguhan mental dan strategi tim.</p>
+    </div>
+```
+Fungsi: Menggunakan kelas .sub-page untuk mengatur tata letak khusus konten detail dan elemen sub-hero sebagai identitas visual yang puitis di setiap halaman hobi.
 
-Navigasi Rekursif: Terdapat komponen tombol kembali yang menggunakan jalur relatif index.html#hobbies. Ini memastikan fungsi "Back" mengarahkan pengguna tepat ke bagian galeri hobi di halaman utama, bukan kembali ke atas halaman.
+```HTML
+<div class="detail-box">
+    <h3><i class="fas fa-trophy"></i> Prestasi Kompetitif</h3>
+    <p>Menjuarai turnamen Mobile Legends dan Top Leaderboard Blood Strike.</p>
+</div>
+```
+Fungsi: Menyediakan wadah khusus untuk menonjolkan poin-poin penting seperti prestasi gaming atau ambisi di bidang Artificial Intelligence.
 
-3. bermusik.html
-Audio Engine: Menggunakan tag standar <audio> dengan ID myAudio. File sumber diarahkan ke path lokal sounds/lagu.mp3. Secara teknis, kontrol autoplay dimatikan untuk mengikuti kebijakan browser modern.
+```HTML
+<a href="index.html#hobbies" class="btn-back-bottom">
+    <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+</a>
+```
+Fungsi: Mengarahkan pengguna kembali tepat ke bagian daftar hobi di halaman utama menggunakan ID selektor #hobbies, sehingga navigasi tetap intuitif.
 
-DOM Interaction: JavaScript digunakan untuk menjembatani elemen UI (tombol) dengan API Audio. Fungsi event listener click menjalankan logika kondisional: jika audio dalam status paused, panggil metode .play(), jika tidak, panggil .pause().
+### Fitur Khusus (bermusik.html)
+```JavaScript
+playBtn.addEventListener("click", function() {
+    if (audio.paused) {
+        audio.play();
+        diskIcon.classList.add("fa-spin");
+    } else {
+        audio.pause();
+        diskIcon.classList.remove("fa-spin");
+    }
+});
+```
+Fungsi: Mengontrol pemutaran file audio lagu.mp3 secara dinamis dan memberikan animasi pada ikon piringan hitam saat musik aktif.
 
-Sync Animasi: Skrip juga memanipulasi kelas CSS pada ikon disk-icon. Penambahan kelas .fa-spin secara dinamis saat musik diputar memberikan indikator visual state audio yang aktif kepada pengguna.
+Siap, Noor! Ini bagian terakhir untuk style.css. Bagian ini sangat penting karena menjelaskan bagaimana tampilan "high-tech" dan blueprint pada portofolio kamu terbentuk.
 
-4. ngoding.html
-Semantic Content: Berfokus pada penggunaan tag paragraf yang terstruktur untuk membangun narasi profesional.
+Seperti biasa, pastikan ada baris kosong setelah tanda penutup kotak kode agar tulisan penjelasannya tidak ikut masuk ke dalam kotak.
 
-Thematic Iconography: Menggunakan kelas ikon spesifik (fa-brain) untuk memperkuat konteks visual mengenai spesialisasi Artificial Intelligence. Secara struktur, file ini mengikuti pola reusable components dari halaman detail lainnya untuk menjaga konsistensi kode.
+## style.css
+File ini berfungsi sebagai otak visual yang mengatur estetika, tata letak responsif, dan pengalaman pengguna di seluruh halaman website.
 
-5. gaming.html
-Performance Tracking: Bagian ini memanfaatkan elemen .detail-box untuk menampilkan poin-poin pencapaian kompetitif. Secara teknis, penggunaan elemen <strong> digunakan untuk menekankan kata kunci seperti nama game dan peringkat leaderboard demi optimasi keterbacaan (skimmability).
+```CSS
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; 
+    font-family: 'Inter', sans-serif; scroll-behavior: smooth; 
+}
+```
+Fungsi: Menghilangkan margin bawaan browser dan menggunakan box-sizing: border-box agar perhitungan dimensi elemen tetap akurat, serta mengaktifkan pergerakan halaman yang halus saat navigasi diklik.
+
+```CSS
+body { 
+    background-color: #0f172a; 
+    background-image: 
+        linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+```
+Fungsi: Menciptakan suasana "high-tech" dengan warna biru gelap dan pola grid halus yang menyerupai kertas desain teknis atau papan sirkuit.
+
+```CSS
+.hobbies-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 25px; 
+}
+```
+Fungsi: Mengatur kartu hobi agar secara otomatis menyesuaikan jumlah kolom berdasarkan lebar layar (responsif) tanpa memerlukan banyak baris kode tambahan.
+
+```CSS
+header { 
+    background: rgba(15, 23, 42, 0.9); 
+    backdrop-filter: blur(12px);
+    position: fixed; 
+}
+```
+Fungsi: Menciptakan efek kaca transparan yang buram pada bagian navigasi atas, memberikan kesan modern dan menjaga keterbacaan menu saat menimpa konten halaman.
