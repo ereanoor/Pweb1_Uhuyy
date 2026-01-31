@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bermusik | R. Noor Fikhri</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="sub-page">
+    <div class="sub-hero">
+        <div class="container">
+            <h1>Melody <span>&</span> Strings</h1>
+            <p>Bahasa emosi yang melampaui kata-kata.</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="story-section">
+            <p style="color: #94a3b8; margin-bottom: 20px;">
+                Di tengah logika pemrograman yang kaku dan baris kode yang terkadang melelahkan, musik muncul sebagai pelarian paling jujur bagi saya. Bagi saya, musik bukan sekadar bunyi, melainkan sebuah harmoni yang mampu menenangkan jiwa dan memberikan ruang untuk berefleksi setelah seharian bergelut dengan algoritma.
+            </p>
+            
+            <div class="detail-box">
+                <h3><i class="fas fa-guitar"></i> Petikan Gitar & Vokal</h3>
+                <p>Meskipun saat ini saya masih dalam tahap mendalami <strong>teknik dasar gitar</strong>, ada ketenangan yang sulit dijelaskan saat jemari saya menyatukan kunci-kunci menjadi sebuah melodi yang utuh. Bernyanyi dan memainkan instrumen adalah cara terbaik saya untuk berkomunikasi dengan perasaan sendiri di dunia yang bergerak begitu cepat.</p>
+            </div>
+
+            <div class="music-player-card">
+                <div class="player-visual"><i id="disk-icon" class="fas fa-compact-disc"></i></div>
+                <div class="player-controls">
+                    <h4>Soundtrack of My Life</h4>
+                    <p>oh again :() - Putt April</p>
+                    <button id="play-btn" class="main-play-btn"><i id="play-icon" class="fas fa-play"></i> Putar Musik</button>
+                    <audio id="myAudio" src="sounds/lagu.mp3"></audio>
+                </div>
+            </div>
+
+            <a href="index.html#hobbies" class="btn-back-bottom"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById("myAudio");
+        const playBtn = document.getElementById("play-btn");
+        const playIcon = document.getElementById("play-icon");
+        const diskIcon = document.getElementById("disk-icon");
+
+        playBtn.addEventListener("click", function() {
+            if (audio.paused) {
+                audio.play();
+                playIcon.classList.replace("fa-play", "fa-pause");
+                diskIcon.classList.add("fa-spin");
+            } else {
+                audio.pause();
+                playIcon.classList.replace("fa-pause", "fa-play");
+                diskIcon.classList.remove("fa-spin");
+            }
+        });
+    </script>
+</body>
+</html> 

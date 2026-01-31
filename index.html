@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | R. Noor Fikhri</title>
+    <link rel="icon" type="image/png" href="https://via.placeholder.com/32/38bdf8/ffffff?text=F">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ereanoor<span>.dev</span></div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#hobbies">Hobi</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero" data-aos="fade-in" data-aos-duration="1500">
+        <div class="container">
+            <h1>R. Noor <span>Fikhri</span></h1>
+            <div class="typewriter-text" id="typewriter"></div>
+            
+            <div class="about-summary">
+                <p>
+                    Saya adalah seorang Mahasiswa Informatika dari Universitas Bengkulu dengan NPM <strong>G1A024075</strong>. Ketertarikan saya pada dunia teknologi bermula dari rasa penasaran yang mendalam terhadap sistem digital dan logika di balik pengembangan perangkat lunak.
+                </p>
+                <p style="margin-top: 20px;">
+                    Saat ini, fokus utama saya tertuju pada eksplorasi pengembangan sistem masa depan dan pemanfaatan <strong>Artificial Intelligence (AI)</strong>. Saya berambisi untuk terus mengasah kemampuan teknis guna menciptakan inovasi cerdas yang mampu memberikan solusi nyata di era digital.
+                </p>
+            </div>
+            
+            <a href="#hobbies" class="btn-cta">Eksplorasi Hobi Saya</a>
+        </div>
+    </section>
+
+    <section id="hobbies">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Explore My World</h2>
+            <div class="hobbies-grid">
+                <a href="membaca.html" class="hobby-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-book-open"></i><h3>Membaca</h3>
+                </a>
+                <a href="bermusik.html" class="hobby-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-guitar"></i><h3>Bermusik</h3>
+                </a>
+                <a href="ngoding.html" class="hobby-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-code"></i><h3>Ngoding</h3>
+                </a>
+                <a href="gaming.html" class="hobby-card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-gamepad"></i><h3>Gaming</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container" data-aos="zoom-in">
+            <h2 class="section-title">Mari Terhubung</h2>
+            <div class="contact-grid">
+                <a href="mailto:fikhrinoor9@gmail.com" class="contact-item"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://linkedin.com/in/R-Noor-Fikhri" target="_blank" class="contact-item"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://instagram.com/noorfikhri" target="_blank" class="contact-item"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://github.com/ereanoor" target="_blank" class="contact-item"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+            <p style="opacity: 0.5; margin-top: 30px;">&copy; 2026 R. Noor Fikhri - G1A024075</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true });
+
+        const textElement = document.getElementById('typewriter');
+        const phrases = ['IT Student', 'AI Enthusiast', ];
+        let phraseIndex = 0; let charIndex = 0; let isDeleting = false;
+        
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1); charIndex--;
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1); charIndex++;
+            }
+            let typeSpeed = isDeleting ? 80 : 150;
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true; typeSpeed = 2000;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; typeSpeed = 500;
+            }
+            setTimeout(type, typeSpeed);
+        }
+        document.addEventListener('DOMContentLoaded', type);
+    </script>
+</body>
+</html>
